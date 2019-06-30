@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moonzhou.backend.base.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="org.moonzhou.backend.base.dmo.User">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="CHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="MOBILE" property="mobile" jdbcType="VARCHAR"/>
+        <result column="EMAIL" property="email" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="LAST_MODIFY_TIME" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,
+        LAST_MODIFY_TIME
+        from T_USER
+    </select>
+</mapper>
