@@ -28,15 +28,15 @@ public class HelloController extends BaseController {
     @Autowired
     private HelloService helloService;
 
-    /*@RequestMapping("/index.do")
+    @RequestMapping("/index")
     public String init() {
 
         LOGGER.info("init index ftl page...");
 
         return "/hello/index";
-    }*/
+    }
 
-    @RequestMapping("/test.do")
+    @RequestMapping("/test")
     @ResponseBody
     public Map<String, Object> test() {
 
