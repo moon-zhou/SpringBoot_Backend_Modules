@@ -1,5 +1,6 @@
 package org.moonzhou.backend.base.web.controller;
 
+import org.moonzhou.backend.base.common.constants.SystemConstants;
 import org.moonzhou.backend.base.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class HelloController extends BaseController {
      * http://localhost:8881/backend-base/hello/index.do
      * @return
      */
-    @RequestMapping("/index.do")
+    @RequestMapping("/index" + SystemConstants.REQUEST_SUFFIX)
     public String init() {
 
         LOGGER.info("init index ftl page...11");
@@ -40,7 +41,7 @@ public class HelloController extends BaseController {
         return "/hello/index";
     }
 
-    @RequestMapping("/test.do")
+    @RequestMapping("/test" + SystemConstants.REQUEST_SUFFIX)
     @ResponseBody
     public Map<String, Object> test() {
 

@@ -1,5 +1,6 @@
 package org.moonzhou.backend.base.web.controller;
 
+import org.moonzhou.backend.base.common.constants.SystemConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ public class BaseController {
 
     private static Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
-    @RequestMapping("/index.do")
+    @RequestMapping("/index" + SystemConstants.REQUEST_SUFFIX)
     public String init() {
 
         LOGGER.info("load project index page in template..");

@@ -1,5 +1,6 @@
 package org.moonzhou.backend.base.web.config;
 
+import org.moonzhou.backend.base.common.constants.SystemConstants;
 import org.moonzhou.backend.base.web.interceptor.CommonInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
@@ -36,7 +37,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("redirect:/index.do");
+        registry.addViewController("/").setViewName("redirect:/index" + SystemConstants.REQUEST_SUFFIX);
     }
 
 }
