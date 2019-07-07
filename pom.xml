@@ -18,7 +18,6 @@
 		<module>backend-base-war</module>
 		<module>backend-base-web</module>
 		<module>backend-base-service</module>
-		<module>backend-base-domain</module>
 		<module>backend-base-dao</module>
 		<module>backend-base-integration</module>
 		<module>backend-base-common</module>

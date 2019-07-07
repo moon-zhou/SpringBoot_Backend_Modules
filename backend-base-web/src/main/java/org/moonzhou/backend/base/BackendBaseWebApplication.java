@@ -30,10 +30,11 @@ public class BackendBaseWebApplication extends SpringBootServletInitializer {
      * @param dispatcherServlet
      * @return
      */
-    @Bean
+    /*@Bean
     public ServletRegistrationBean servletRegistrationBean(DispatcherServlet dispatcherServlet) {
+
         ServletRegistrationBean bean = new ServletRegistrationBean(dispatcherServlet);
         bean.addUrlMappings("*.do");
         return bean;
-    }
+    }*/
 }

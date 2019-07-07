@@ -36,12 +36,12 @@ spring:
       restart:
           enabled: true
           additional-paths: src/main/java
-  mvc:
-      pathmatch:
-          use-suffix-pattern: false
-          use-registered-suffix-pattern: true
-      contentnegotiation:
-          favor-path-extension: false
+  #mvc:
+  #    pathmatch:
+  #        use-suffix-pattern: false
+  #        use-registered-suffix-pattern: true
+  #    contentnegotiation:
+  #        favor-path-extension: false
 
 # mybatis configuration
 mybatis:
