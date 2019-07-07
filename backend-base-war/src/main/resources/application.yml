@@ -13,7 +13,18 @@ spring:
     driver-class-ame: com.mysql.jdbc.Driver
     username: root
     password: root
-    #type: com.alibaba.druid.pool.DruidDataSource
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        web-stat-filter.exclusions: .js,.gif,.jpg,.png,.css,.ico,/druid/*
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: druid
+        login-password: druid123
   # freemarker configuration
   freemarker:
       allow-request-override: false
