@@ -9,7 +9,7 @@
 
  Target Server Type    : MySQL
  Target Server Version : 50717
- File Encoding         : 65001
+ File Encoding         : 65002
 
  Date: 30/06/2019 18:32:34
 */
@@ -17,9 +17,9 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP DATABASE 'member';
-CREATE DATABASE 'member' DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS MEMBER DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
+USE MEMBER;
 
 
 -- ----------------------------
