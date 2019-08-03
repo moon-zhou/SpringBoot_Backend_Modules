@@ -61,6 +61,7 @@
         <table tableName="T_USER" domainObjectName="User" enableCountByExample="false"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>
+
     </context>
 
 </generatorConfiguration>

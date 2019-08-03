@@ -1,7 +1,6 @@
-package org.moonzhou.backend.base.dao;
+package org.moonzhou.backend.base.dao.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.moonzhou.backend.base.dmo.User;
+import org.moonzhou.backend.base.dao.dmo.User;
 
 import java.util.List;
 

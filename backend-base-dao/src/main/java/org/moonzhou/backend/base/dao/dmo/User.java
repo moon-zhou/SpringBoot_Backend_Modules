@@ -1,4 +1,4 @@
-package org.moonzhou.backend.base.dmo;
+package org.moonzhou.backend.base.dao.dmo;
 
 import java.io.Serializable;
 import java.util.Date;
