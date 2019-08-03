@@ -55,7 +55,8 @@ spring:
   #        favor-path-extension: false
 
 # mybatis configuration
-mybatis:
+#mybatis:
+mybatis-plus:
   mapper-locations: classpath*:mybatis/mapper/*Mapper.xml
   type-aliases-package: org.moonzhou.backend.base.dmo
 
