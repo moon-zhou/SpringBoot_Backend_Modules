@@ -30,6 +30,7 @@ public class HelloController extends BaseController {
     private HelloService helloService;
 
     /**
+     * 测试页面
      * http://localhost:8881/backend-base/hello/index.do
      * @return
      */
@@ -41,6 +42,11 @@ public class HelloController extends BaseController {
         return "/hello/index";
     }
 
+    /**
+     * 测试数据请求
+     * http://localhost:8881/backend-base/hello/test.do
+     * @return
+     */
     @RequestMapping("/test" + SystemConstants.REQUEST_SUFFIX)
     @ResponseBody
     public Map<String, Object> test() {

@@ -1,8 +1,8 @@
 package org.moonzhou.backend.base.service.impl;
 
 import org.moonzhou.backend.base.common.configs.CustomConfig;
-import org.moonzhou.backend.base.dao.UserMapper;
-import org.moonzhou.backend.base.dmo.User;
+import org.moonzhou.backend.base.dao.mapper.UserMapper;
+import org.moonzhou.backend.base.dao.dmo.User;
 import org.moonzhou.backend.base.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -12,9 +12,19 @@
         <result column="LAST_MODIFY_TIME" property="lastModifyTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <!-- 查询所有的用户信息 -->
     <select id="selectAll" resultMap="BaseResultMap">
         select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,
         LAST_MODIFY_TIME
         from T_USER
     </select>
+
+    <!-- 分页查询用户信息 -->
+    <select id="selectPageVo" resultMap="BaseResultMap" parameterType="org.moonzhou.backend.base.dao.dmo.User">
+        select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,
+        LAST_MODIFY_TIME
+        from T_USER
+        WHERE ACCOUNT_NAME=#{accountName}
+    </select>
+
 </mapper>
