@@ -3,14 +3,13 @@ package org.moonzhou.backend.base.web.controller;
 import org.moonzhou.backend.base.common.constants.SystemConstants;
 import org.moonzhou.backend.base.service.UserService;
 import org.moonzhou.backend.base.service.dto.user.UserDto;
+import org.moonzhou.backend.base.service.dto.user.UserListDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 /**
  * @Description 用户表数据常规操作
@@ -35,9 +34,12 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/queryAllUser" + SystemConstants.REQUEST_SUFFIX)
     @ResponseBody
-    public List<UserDto> queryAllUser() {
+    public UserListDto queryAllUser() {
 
-        return userService.queryAllUser();
+        UserListDto userListDto = new UserListDto();
+        userListDto.setUserDtoList(userService.queryAllUser());
+
+        return userListDto;
     }
 
     @RequestMapping("/addUser" + SystemConstants.REQUEST_SUFFIX)

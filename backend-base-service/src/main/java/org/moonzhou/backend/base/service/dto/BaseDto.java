@@ -1,5 +1,7 @@
 package org.moonzhou.backend.base.service.dto;
 
+import org.moonzhou.backend.base.common.constants.ResponseEnum;
+
 /**
  * @Description 对外返回的dto对象基类
  * @Author moon-zhou <ayimin1989@163.com>
@@ -9,7 +11,8 @@ package org.moonzhou.backend.base.service.dto;
  */
 public class BaseDto {
 
-    private String responseCode;
+    // 默认成功
+    private String responseCode = ResponseEnum.SUCCESS.getResponseCode();
 
     private String responseMessage;
 
@@ -27,5 +30,9 @@ public class BaseDto {
 
     public void setResponseMessage(String responseMessage) {
         this.responseMessage = responseMessage;
+    }
+
+    public boolean isSuccess() {
+        return responseCode != null && responseCode.equals(ResponseEnum.SUCCESS.getResponseCode());
     }
 }
