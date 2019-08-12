@@ -18,6 +18,8 @@ import java.util.List;
 public interface UserMapper {
     List<User> selectAll();
 
+    List<User> selectByUser(User user);
+
     /**
      * <p>
      * 查询 : 根据state状态查询用户列表，分页显示

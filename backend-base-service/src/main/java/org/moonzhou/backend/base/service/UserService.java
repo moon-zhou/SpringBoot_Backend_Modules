@@ -1,5 +1,7 @@
 package org.moonzhou.backend.base.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.moonzhou.backend.base.service.dto.user.UserDto;
 
 import java.util.List;
@@ -16,4 +18,6 @@ public interface UserService {
     List<UserDto> queryAllUser();
 
     List<UserDto> queryUser(UserDto userDto);
+
+    IPage<UserDto> selectUserPage(Page<UserDto> page);
 }

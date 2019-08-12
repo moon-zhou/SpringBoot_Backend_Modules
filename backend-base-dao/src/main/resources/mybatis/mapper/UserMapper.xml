@@ -19,6 +19,14 @@
         from T_USER
     </select>
 
+    <!-- 查询所有的用户信息 -->
+    <select id="selectByUser" resultMap="BaseResultMap" parameterType="org.moonzhou.backend.base.dao.dmo.User">
+        select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,
+        LAST_MODIFY_TIME
+        from T_USER
+        where ACCOUNT_NAME=#{accountName} or SEX=#{sex}
+    </select>
+
     <!-- 分页查询用户信息 -->
     <select id="selectPageVo" resultMap="BaseResultMap" parameterType="org.moonzhou.backend.base.dao.dmo.User">
         select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,

@@ -42,6 +42,21 @@ public class UserController extends BaseController {
         return userListDto;
     }
 
+    /**
+     * http://localhost:8881/backend-base/user/queryUsers.do
+     * 查询所有用户信息
+     * @return
+     */
+    @RequestMapping("/queryUsers" + SystemConstants.REQUEST_SUFFIX)
+    @ResponseBody
+    public UserListDto queryUsers(UserDto userDto) {
+
+        UserListDto userListDto = new UserListDto();
+        userListDto.setUserDtoList(userService.queryUser(userDto));
+
+        return userListDto;
+    }
+
     @RequestMapping("/addUser" + SystemConstants.REQUEST_SUFFIX)
     @ResponseBody
     public UserDto addUser() {
