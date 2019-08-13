@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -17,7 +16,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private CommonInterceptor commonInterceptor;
-
 
     @Bean
     public ServletListenerRegistrationBean requestContextListener() {
