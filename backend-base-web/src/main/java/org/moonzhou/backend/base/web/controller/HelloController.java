@@ -2,6 +2,7 @@ package org.moonzhou.backend.base.web.controller;
 
 import org.moonzhou.backend.base.common.constants.SystemConstants;
 import org.moonzhou.backend.base.service.HelloService;
+import org.moonzhou.backend.base.service.dto.BaseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,25 @@ public class HelloController extends BaseController {
     public Map<String, Object> test() {
 
         return helloService.testQuery();
+    }
+
+    /**
+     * 测试日志级别请求
+     * http://localhost:8881/backend-base/hello/testLog.do
+     * @return
+     */
+    @RequestMapping("/testLog" + SystemConstants.REQUEST_SUFFIX)
+    @ResponseBody
+    public BaseDto testLog() {
+
+        LOGGER.debug("debug level log content...");
+        LOGGER.info("info level log content...");
+        LOGGER.warn("warn level log content...");
+        LOGGER.error("error level log content...");
+
+        BaseDto baseDto = new BaseDto();
+
+        return baseDto;
     }
 
 }

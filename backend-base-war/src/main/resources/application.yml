@@ -60,3 +60,12 @@ mybatis-plus:
   mapper-locations: classpath*:mybatis/mapper/*Mapper.xml
   type-aliases-package: org.moonzhou.backend.base.dmo
 
+# log config
+logging:
+  config: classpath:logback-spring.xml
+  #level:
+    #org.moonzhou.backend.base.dao: debug
+    #org.moonzhou.backend.base.web.controller: warm
+  #file: logs/spring-boot-logging.log
+  #pattern:
+    #console: %d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n
