@@ -43,7 +43,7 @@ public class UserController extends BaseController {
     }
 
     /**
-     * http://localhost:8881/backend-base/user/queryUsers.do
+     * http://localhost:8881/backend-base/user/queryUsers.do?sex=1
      * 查询所有用户信息
      * @return
      */
