@@ -2,13 +2,14 @@ package org.moonzhou.backend.base.web.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 配置mybatis plus 分页
  */
 @EnableTransactionManagement
-//@Configuration
+@Configuration
 //@MapperScan("org.moonzhou.backend.base.dao.*.mapper*")
 public class MybatisPlusConfig {
 

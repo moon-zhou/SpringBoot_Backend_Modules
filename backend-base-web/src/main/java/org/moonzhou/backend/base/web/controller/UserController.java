@@ -57,6 +57,23 @@ public class UserController extends BaseController {
         return userListDto;
     }
 
+    /**
+     * http://localhost:8881/backend-base/user/queryPageUsers.do?sex=1&current=1&size=1
+     * http://localhost:8881/backend-base/user/queryPageUsers.do?current=3&size=1
+     * 分页按条件查询
+     * @param userDto
+     * @return
+     */
+    @RequestMapping("/queryPageUsers" + SystemConstants.REQUEST_SUFFIX)
+    @ResponseBody
+    public UserListDto queryPageUsers(UserDto userDto) {
+
+        UserListDto userListDto = new UserListDto();
+        userListDto.setUserDtoList(userService.selectUserPage(userDto));
+
+        return userListDto;
+    }
+
     @RequestMapping("/addUser" + SystemConstants.REQUEST_SUFFIX)
     @ResponseBody
     public UserDto addUser() {

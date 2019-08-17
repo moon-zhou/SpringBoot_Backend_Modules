@@ -24,15 +24,28 @@
         select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,
         LAST_MODIFY_TIME
         from T_USER
-        where ACCOUNT_NAME=#{accountName} or SEX=#{sex}
+        WHERE 1=1
+        <if test="accountName!=null  and accountName.trim()!=''">
+            AND ACCOUNT_NAME=#{accountName}
+        </if>
+        <if test="sex!=null  and sex.trim()!=''">
+            AND SEX=#{sex}
+        </if>
     </select>
 
     <!-- 分页查询用户信息 -->
-    <select id="selectPageVo" resultMap="BaseResultMap" parameterType="org.moonzhou.backend.base.dao.dmo.User">
+    <select id="selectUserByPageVo" resultMap="BaseResultMap" parameterType="org.moonzhou.backend.base.dao.dmo.User">
         select ID, ACCOUNT_NAME, SEX, PASSWORD, MOBILE, EMAIL, CREATE_TIME,
         LAST_MODIFY_TIME
         from T_USER
-        WHERE ACCOUNT_NAME=#{accountName}
+        WHERE 1=1
+        <if test="user.accountName!=null  and user.accountName.trim()!=''">
+            AND ACCOUNT_NAME=#{user.accountName}
+        </if>
+        <if test="user.sex!=null  and user.sex.trim()!=''">
+            AND SEX=#{user.sex}
+        </if>
+        order by id
     </select>
 
 </mapper>

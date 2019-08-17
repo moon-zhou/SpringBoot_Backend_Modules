@@ -70,9 +70,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public IPage<UserDto> selectUserPage(Page<UserDto> page) {
+    public List<UserDto> selectUserPage(UserDto userDto) {
 
+        // 将参数从dto对象转换为dmo对象，进行查询
+        UserDTOConvert userDTOConvert = new UserDTOConvert();
+        User user = userDTOConvert.convert(userDto);
 
-        return null;
+        IPage<User> userPage = new Page<>(userDto.getCurrent(), userDto.getSize());
+        List<User> userList = userMapper.selectUserByPageVo(userPage, user);
+
+        List<UserDto> userDtoList = new ArrayList();
+        // 将查询到的结果从dmo对象转换为dto对象
+        UserConvert userConvert = new UserConvert();
+        userList.forEach(userResult -> {
+            UserDto userDtoResult = userConvert.convert(userResult);
+
+            userDtoList.add(userDtoResult);
+        });
+
+        return userDtoList;
     }
 }

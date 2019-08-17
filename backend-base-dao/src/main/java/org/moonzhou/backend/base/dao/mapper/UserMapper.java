@@ -1,7 +1,6 @@
 package org.moonzhou.backend.base.dao.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.moonzhou.backend.base.dao.dmo.User;
 
 import java.util.List;
@@ -27,8 +26,7 @@ public interface UserMapper {
      * </p>
      *
      * @param page 分页对象,xml中可以从里面进行取值,传递参数 Page 即自动分页,必须放在第一位(你可以继承Page实现自己的分页对象)
-     * @param user 用户查询条件
      * @return 分页对象
      */
-    IPage<User> selectUserByPageVo(Page page, User user);
+    List<User> selectUserByPageVo(IPage<User> page, User user);
 }
