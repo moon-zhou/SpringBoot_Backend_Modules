@@ -15,4 +15,9 @@ public interface SystemConstants {
      * 手动公共后缀
      */
     String REQUEST_SUFFIX = ".do";
+
+    /**
+     * 系统简称
+     */
+    String SYSTEM_NAME = "moon-zhou-backend-base";
 }
