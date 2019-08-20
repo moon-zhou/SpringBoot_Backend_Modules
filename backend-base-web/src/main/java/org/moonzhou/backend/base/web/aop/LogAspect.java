@@ -120,6 +120,35 @@ public class LogAspect {
     }
 
     /**
+     * 环绕增强，相当于MethodInterceptor
+     * 环绕dao
+     */
+    @Around("daoLog()")
+    public Object aroundDao(ProceedingJoinPoint joinPoint) throws Throwable {
+
+        Object res = null;
+        long time = System.currentTimeMillis();
+        try {
+            // 方法执行前，打印入参
+            printParams(DAO_LOGGER, joinPoint);
+
+            // 执行方法
+            res = joinPoint.proceed();
+
+            time = System.currentTimeMillis() - time;
+            return res;
+        } finally {
+            try {
+                // 方法执行完成后增加日志
+                addOperationLog(DAO_LOGGER, LoggerEnum.CONTROLLER_APPENDER_NAME.getAbstractLayer(), joinPoint, res, time);
+            } catch (Exception e) {
+                // 分层日志异常，记录到业务日志中
+                LOGGER.error("记录日志异常： ", e);
+            }
+        }
+    }
+
+    /**
      * 打印入参数据
      * @param point
      */
