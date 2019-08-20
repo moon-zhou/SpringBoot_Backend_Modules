@@ -1,8 +1,9 @@
 package org.moonzhou.backend.base.web.aop;
 
 import com.alibaba.fastjson.JSON;
-import org.aspectj.lang.JoinPoint;
+import com.alibaba.fastjson.JSONObject;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -67,10 +68,12 @@ public class LogAspect {
     @Around("controllerLog()")
     public Object aroundController(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        // TODO 1. 方法执行前，打印入参
         Object res = null;
         long time = System.currentTimeMillis();
         try {
+            // 方法执行前，打印入参
+            printParams(CONTROLLER_LOGGER, joinPoint);
+
             // 执行方法
             res = joinPoint.proceed();
 
@@ -78,7 +81,7 @@ public class LogAspect {
             return res;
         } finally {
             try {
-                // TODO 2. 方法执行完成后增加日志
+                // 方法执行完成后增加日志
                 addOperationLog(CONTROLLER_LOGGER, LoggerEnum.CONTROLLER_APPENDER_NAME.getAbstractLayer(), joinPoint, res, time);
             } catch (Exception e) {
                 // 分层日志异常，记录到业务日志中
@@ -87,17 +90,107 @@ public class LogAspect {
         }
     }
 
-    // TODO 3. 具体打印日志方法
-    private void addOperationLog(Logger logger, String abstractLayer, JoinPoint joinPoint, Object res, long time) {
-        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
+    /**
+     * 环绕增强，相当于MethodInterceptor
+     * 环绕service
+     */
+    @Around("serviceLog()")
+    public Object aroundService(ProceedingJoinPoint joinPoint) throws Throwable {
 
+        Object res = null;
+        long time = System.currentTimeMillis();
+        try {
+            // 方法执行前，打印入参
+            printParams(SERVICE_LOGGER, joinPoint);
+
+            // 执行方法
+            res = joinPoint.proceed();
+
+            time = System.currentTimeMillis() - time;
+            return res;
+        } finally {
+            try {
+                // 方法执行完成后增加日志
+                addOperationLog(SERVICE_LOGGER, LoggerEnum.CONTROLLER_APPENDER_NAME.getAbstractLayer(), joinPoint, res, time);
+            } catch (Exception e) {
+                // 分层日志异常，记录到业务日志中
+                LOGGER.error("记录日志异常： ", e);
+            }
+        }
+    }
+
+    /**
+     * 打印入参数据
+     * @param point
+     */
+    private void printParams(Logger logger, ProceedingJoinPoint point) {
+
+        // 获取参数值
+        Object[] args = point.getArgs();
+
+        // 通过这获取到方法的所有参数名称的字符串数组
+        Signature signature = point.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        String[] parameterNames = methodSignature.getParameterNames();
+
+        JSONObject params = new JSONObject();
+
+        if (null != parameterNames && parameterNames.length > 0) {
+            for (int i = 0; i < parameterNames.length; i++) {
+
+                Object arg = args[i];
+
+                // 只输出参数是String类型的
+                /*if (arg instanceof String) {
+                    params.put(parameterNames[i], arg);
+                }*/
+
+                try {
+                    params.put(parameterNames[i], arg);
+                } catch (Exception e) {
+                    LOGGER.info("param to json object error.");
+                    LOGGER.error("param to json object exception:", e);
+                }
+
+            }
+        }
+
+        // 输出请求的参数
+        try {
+            logger.info("{} request param is: {}", getMethod(point), JSON.toJSONString(params, ValueMaskFilter.getInstance()));
+        } catch (Exception e) {
+            LOGGER.info("monitor print error.");
+            LOGGER.error("stack info is:", e);
+        }
+    }
+
+    /**
+     * 具体打印日志方法
+     */
+    private void addOperationLog(Logger logger, String abstractLayer, ProceedingJoinPoint joinPoint, Object res, long time) {
         // 实例化日志对象
         LoggerDto loggerDto = new LoggerDto();
         loggerDto.setAbstractLayer(abstractLayer);
-        loggerDto.setClassMethod(signature.getDeclaringTypeName() + "." + signature.getName());
+        loggerDto.setClassMethod(getMethod(joinPoint));
         loggerDto.setRunTime(time);
-        loggerDto.setParam(JSON.toJSONString(res, ValueMaskFilter.getInstance()));
+        loggerDto.setParam(res);
 
         logger.info("layer log: {}", loggerDto);
+    }
+
+    /**
+     * 按照 类名+"."+方法名获取调用方法名称
+     *
+     * @param point
+     * @return
+     */
+    private String getMethod(ProceedingJoinPoint point) {
+        StringBuilder method = new StringBuilder();
+
+        MethodSignature signature = (MethodSignature) point.getSignature();
+        method.append(signature.getDeclaringType().getSimpleName()).append(".")
+                .append(signature.getName());
+
+        return method.toString();
     }
 }
