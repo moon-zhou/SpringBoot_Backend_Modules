@@ -53,10 +53,16 @@ public class LogAspect {
     public void controllerLog() {
     }//签名，可以理解成这个切入点的一个名称
 
+    /**
+     * 切入service实现类
+     */
     @Pointcut("execution(public * org.moonzhou.backend.base.service.impl..*.*(..))")
     public void serviceLog() {
     }
 
+    /**
+     * 切入dao接口方法
+     */
     @Pointcut("execution(public * org.moonzhou.backend.base.dao.mapper..*.*(..))")
     public void daoLog() {
     }
