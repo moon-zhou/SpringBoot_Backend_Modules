@@ -8,9 +8,11 @@ package org.moonzhou.backend.base.common.constants;
  * @Date 2019/8/18
  */
 public enum LoggerEnum {
-    CONTROLLER_APPENDER_NAME("ControllerLogger", "controllerLog","controller层logback日志appender"),
-    SERVICE_APPENDER_NAME("ServiceLogger", "serviceLog","service层logback日志appender"),
-    DAO_APPENDER_NAME("DaoLogger", "daoLog","dao层logback日志appender"),
+    CONTROLLER_LOGGER_NAME("ControllerLogger", "controllerLog","controller层logback日志"),
+    SERVICE_LOGGER_NAME("ServiceLogger", "serviceLog","service层logback日志"),
+    DAO_LOGGER_NAME("DaoLogger", "daoLog","dao层logback日志"),
+
+    ANNOTATION_LOGGER_NAME("AnnotationLogger", "annotationMethodLog","注解在方法上的日志"),
 
     ;
 

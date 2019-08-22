@@ -34,17 +34,17 @@ public class LogAspect {
     /**
      * controller日志打印对象
      */
-    private static final Logger CONTROLLER_LOGGER = LoggerFactory.getLogger(LoggerEnum.CONTROLLER_APPENDER_NAME.getLogger());
+    private static final Logger CONTROLLER_LOGGER = LoggerFactory.getLogger(LoggerEnum.CONTROLLER_LOGGER_NAME.getLogger());
 
     /**
      * service日志打印对象
      */
-    private static final Logger SERVICE_LOGGER = LoggerFactory.getLogger(LoggerEnum.SERVICE_APPENDER_NAME.getLogger());
+    private static final Logger SERVICE_LOGGER = LoggerFactory.getLogger(LoggerEnum.SERVICE_LOGGER_NAME.getLogger());
 
     /**
      * dao日志打印对象
      */
-    private static final Logger DAO_LOGGER = LoggerFactory.getLogger(LoggerEnum.DAO_APPENDER_NAME.getLogger());
+    private static final Logger DAO_LOGGER = LoggerFactory.getLogger(LoggerEnum.DAO_LOGGER_NAME.getLogger());
 
     /**
      * 切入点描述 这个是controller包的切入点
@@ -88,7 +88,7 @@ public class LogAspect {
         } finally {
             try {
                 // 方法执行完成后增加日志
-                addOperationLog(CONTROLLER_LOGGER, LoggerEnum.CONTROLLER_APPENDER_NAME.getAbstractLayer(), joinPoint, res, time);
+                addOperationLog(CONTROLLER_LOGGER, LoggerEnum.CONTROLLER_LOGGER_NAME.getAbstractLayer(), joinPoint, res, time);
             } catch (Exception e) {
                 // 分层日志异常，记录到业务日志中
                 LOGGER.error("记录日志异常： ", e);
@@ -117,7 +117,7 @@ public class LogAspect {
         } finally {
             try {
                 // 方法执行完成后增加日志
-                addOperationLog(SERVICE_LOGGER, LoggerEnum.CONTROLLER_APPENDER_NAME.getAbstractLayer(), joinPoint, res, time);
+                addOperationLog(SERVICE_LOGGER, LoggerEnum.CONTROLLER_LOGGER_NAME.getAbstractLayer(), joinPoint, res, time);
             } catch (Exception e) {
                 // 分层日志异常，记录到业务日志中
                 LOGGER.error("记录日志异常： ", e);
@@ -146,7 +146,7 @@ public class LogAspect {
         } finally {
             try {
                 // 方法执行完成后增加日志
-                addOperationLog(DAO_LOGGER, LoggerEnum.CONTROLLER_APPENDER_NAME.getAbstractLayer(), joinPoint, res, time);
+                addOperationLog(DAO_LOGGER, LoggerEnum.CONTROLLER_LOGGER_NAME.getAbstractLayer(), joinPoint, res, time);
             } catch (Exception e) {
                 // 分层日志异常，记录到业务日志中
                 LOGGER.error("记录日志异常： ", e);
