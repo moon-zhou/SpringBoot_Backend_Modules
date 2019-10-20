@@ -35,10 +35,10 @@ public class HelloController extends BaseController {
     /**
      * 测试页面
      * http://localhost:8881/backend-base/hello/index.do
-     * TODO 静态资源404
      *
      * @return
      */
+    @Override
     @RequestMapping("/index" + SystemConstants.REQUEST_SUFFIX)
     public String init() {
 
