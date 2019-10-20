@@ -1,6 +1,8 @@
 package org.moonzhou.backend.base.web.controller;
 
+import org.moonzhou.backend.base.common.annotations.MethodLog;
 import org.moonzhou.backend.base.common.constants.SystemConstants;
+import org.moonzhou.backend.base.common.utils.BeanUtil;
 import org.moonzhou.backend.base.service.HelloService;
 import org.moonzhou.backend.base.service.dto.BaseDto;
 import org.slf4j.Logger;
@@ -33,6 +35,8 @@ public class HelloController extends BaseController {
     /**
      * 测试页面
      * http://localhost:8881/backend-base/hello/index.do
+     * TODO 静态资源404
+     *
      * @return
      */
     @RequestMapping("/index" + SystemConstants.REQUEST_SUFFIX)
@@ -46,6 +50,7 @@ public class HelloController extends BaseController {
     /**
      * 测试数据请求
      * http://localhost:8881/backend-base/hello/test.do
+     *
      * @return
      */
     @RequestMapping("/test" + SystemConstants.REQUEST_SUFFIX)
@@ -58,6 +63,7 @@ public class HelloController extends BaseController {
     /**
      * 测试日志级别请求
      * http://localhost:8881/backend-base/hello/testLog.do
+     *
      * @return
      */
     @RequestMapping("/testLog" + SystemConstants.REQUEST_SUFFIX)
@@ -72,6 +78,35 @@ public class HelloController extends BaseController {
         BaseDto baseDto = new BaseDto();
 
         return baseDto;
+    }
+
+    /**
+     * 测试注解日志请求
+     * controller上直接使用MethodLog是始终都会生效的
+     * http://localhost:8881/backend-base/hello/testAnnotationLog.do
+     *
+     * @return
+     */
+    @MethodLog(operationType = "testType", operationName = "testUser", description = "测试注解日志")
+    @RequestMapping("/testAnnotationLog" + SystemConstants.REQUEST_SUFFIX)
+    @ResponseBody
+    public BaseDto testAnnotationLog() {
+
+        // 这个使用的是spring上下文里的对象去调用initReturn方法，所以initReturn方法上的methodLog注解会被AnnotationLogAspect的规则拦截
+        return BeanUtil.getBean(this.getClass()).initReturn();
+
+        // 此处调用方法，已经被拦截处理过，即被动态代理拦截了，再直接调用别的方法，是通过代理对象调用的，方法是不会被增强的，即initReturn方法上注解不会生效
+        // return initReturn();
+    }
+
+    /**
+     * 测试注解日志打印
+     *
+     * @return
+     */
+    @MethodLog(operationType = "init", operationName = "testUser", description = "初始化controller返回值")
+    public BaseDto initReturn() {
+        return new BaseDto();
     }
 
 }
