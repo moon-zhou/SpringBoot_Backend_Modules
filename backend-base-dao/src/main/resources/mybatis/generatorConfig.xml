@@ -38,7 +38,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="org.moonzhou.backend.base.dmo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="org.moonzhou.backend.base.dao.dmo" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -52,13 +52,13 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="org.moonzhou.backend.base.dao"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="org.moonzhou.backend.base.dao.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="T_USER" domainObjectName="User" enableCountByExample="false"
+        <table tableName="T_BOOK" domainObjectName="Book" enableCountByExample="false"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>
 
