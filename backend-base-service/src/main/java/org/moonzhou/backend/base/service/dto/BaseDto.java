@@ -1,6 +1,5 @@
 package org.moonzhou.backend.base.service.dto;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import org.moonzhou.backend.base.common.constants.ResponseEnum;
 
 import java.io.Serializable;
@@ -21,18 +20,6 @@ public class BaseDto implements Serializable {
 
     private String responseMessage;
 
-    /**
-     * 每页显示条数，默认 10
-     */
-    @JSONField(serialize=false)
-    private long size = 10;
-
-    /**
-     * 当前页
-     */
-    @JSONField(serialize=false)
-    private long current = 1;
-
     public String getResponseCode() {
         return responseCode;
     }
@@ -47,22 +34,6 @@ public class BaseDto implements Serializable {
 
     public void setResponseMessage(String responseMessage) {
         this.responseMessage = responseMessage;
-    }
-
-    public long getSize() {
-        return size;
-    }
-
-    public void setSize(long size) {
-        this.size = size;
-    }
-
-    public long getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(long current) {
-        this.current = current;
     }
 
     public boolean isSuccess() {

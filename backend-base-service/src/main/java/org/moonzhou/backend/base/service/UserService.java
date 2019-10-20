@@ -28,7 +28,7 @@ public interface UserService {
 
     /**
      * 根据查询条件分页查询数据
-     * @param page
+     * @param userDto
      * @return
      */
     List<UserDto> selectUserPage(UserDto userDto);

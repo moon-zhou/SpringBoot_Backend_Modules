@@ -1,6 +1,6 @@
 package org.moonzhou.backend.base.service.dto.user;
 
-import org.moonzhou.backend.base.service.dto.BaseDto;
+import org.moonzhou.backend.base.service.dto.PageDto;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @Since 1.0
  * @Date 2019/8/12
  */
-public class UserListDto extends BaseDto {
+public class UserListDto extends PageDto {
     private List<UserDto> userDtoList;
 
     public List<UserDto> getUserDtoList() {

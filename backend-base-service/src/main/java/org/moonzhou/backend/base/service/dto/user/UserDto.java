@@ -1,6 +1,6 @@
 package org.moonzhou.backend.base.service.dto.user;
 
-import org.moonzhou.backend.base.service.dto.BaseDto;
+import org.moonzhou.backend.base.service.dto.PageDto;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import java.util.Date;
  * @Since 1.0
  * @Date 2019/8/3
  */
-public class UserDto extends BaseDto {
+public class UserDto extends PageDto {
     private int id;
 
     private String accountName;
